@@ -20,7 +20,7 @@ const baseline: Config = {
       width: 96,
       height: 96,
     },
-    splashTitle: 'skybrush live',
+    splashTitle: 'Botlab live',
   },
 
   ephemeral: false,
