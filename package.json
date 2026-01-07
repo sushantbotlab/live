@@ -22,7 +22,7 @@
     "artifactName": "botlab-live-${version}-${os}.${ext}",
 
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "assets-empty"
     },
 
     "files": [
@@ -42,8 +42,7 @@
           "target": "nsis",
           "arch": ["x64"]
         }
-      ],
-      "icon": null
+      ]
     },
 
     "nsis": {
