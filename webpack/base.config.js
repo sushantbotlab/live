@@ -108,8 +108,13 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
+  use: {
+    loader: 'ts-loader',
+    options: {
+      transpileOnly: true, // 🔥 CRITICAL FIX
+    },
+  },
+  exclude: /node_modules/,
       },
       {
         test: /\.css$/,
