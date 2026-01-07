@@ -1,11 +1,10 @@
 {
-  "name": "botlab-live",
+  "name": "@skybrush/live",
   "version": "2.12.1",
   "description": "Ground control station of a Botlab drone swarm",
   "main": "electron/main.js",
   "private": true,
   "license": "GPL-3.0-or-later",
-
   "author": {
     "name": "Botlab Dynamics",
     "email": "support@botlabdynamics.com"
@@ -13,16 +12,13 @@
 
   "scripts": {
     "bundle": "rimraf build && cross-env NODE_ENV=production webpack --mode=production --progress --config webpack/dist.config.js",
-    "start": "rimraf build && webpack serve --config webpack/browser.config.js --progress",
-    "start:electron": "webpack serve --server-type https --config webpack/electron.config.js --progress",
-    "lint": "eslint",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "start:electron": "webpack serve --config webpack/electron.config.js"
   },
 
   "build": {
     "appId": "com.collmot.botlab.live",
     "productName": "Botlab Live",
-
     "artifactName": "botlab-live-${version}-${os}.${ext}",
 
     "directories": {
@@ -37,9 +33,7 @@
 
     "linux": {
       "target": ["AppImage", "deb"],
-      "category": "Utility",
-      "executableName": "botlab-live",
-      "maintainer": "Botlab Dynamics <support@botlabdynamics.com>"
+      "category": "Utility"
     },
 
     "win": {
@@ -49,17 +43,28 @@
           "arch": ["x64"]
         }
       ],
-      "icon": "assets/icons/icon.ico"
+      "icon": null
     },
 
     "nsis": {
       "oneClick": false,
       "perMachine": false,
-      "allowElevation": true,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "shortcutName": "Botlab Live"
+      "createStartMenuShortcut": true
     }
+  },
+
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+
+  "devDependencies": {
+    "electron": "^39.2.4",
+    "electron-builder": "^26.0.12",
+    "rimraf": "^6.0.1",
+    "cross-env": "^10.1.0",
+    "patch-package": "^8.0.1"
   }
 }
