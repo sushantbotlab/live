@@ -12,7 +12,6 @@
 
   "scripts": {
     "bundle": "rimraf build && cross-env NODE_ENV=production webpack --mode=production --progress --config webpack/dist.config.js",
-    "postinstall": "patch-package"
   },
 
   "build": {
