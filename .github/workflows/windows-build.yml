@@ -10,27 +10,23 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install --legacy-peer-deps
+      - run: npm install --legacy-peer-deps
 
-      - name: Build React bundle
-        run: npm run bundle
+      - run: npm run bundle
 
       - name: Build Windows EXE
         env:
           ELECTRON_BUILDER_DISABLE_ICON_CONVERSION: "true"
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
         run: npx electron-builder --win --x64
 
-      - name: Upload EXE artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: botlab-live-windows-exe
           path: dist/*.exe

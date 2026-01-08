@@ -7,17 +7,17 @@
   "license": "GPL-3.0-or-later",
 
   "scripts": {
-    "bundle": "rimraf build && cross-env NODE_ENV=production webpack --mode=production",
-    "start:electron": "webpack serve --config webpack/electron.config.js"
+    "bundle": "rimraf build && cross-env NODE_ENV=production webpack --mode=production --config webpack/dist.config.js",
+    "postinstall": "patch-package"
   },
 
   "build": {
     "appId": "com.collmot.botlab.live",
     "productName": "Botlab Live",
-    "artifactName": "botlab-live-${version}-win.${ext}",
+    "artifactName": "botlab-live-${version}-${os}.${ext}",
 
     "directories": {
-      "buildResources": "empty"
+      "buildResources": "assets-empty"
     },
 
     "files": [
@@ -26,14 +26,26 @@
       "package.json"
     ],
 
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Utility"
+    },
+
     "win": {
       "icon": null,
       "target": [
         {
-          "target": "portable",
+          "target": "nsis",
           "arch": ["x64"]
         }
       ]
+    },
+
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
     }
   },
 
@@ -46,6 +58,7 @@
     "electron": "^39.2.4",
     "electron-builder": "^26.0.12",
     "rimraf": "^6.0.1",
-    "cross-env": "^10.1.0"
+    "cross-env": "^10.1.0",
+    "patch-package": "^8.0.1"
   }
 }
