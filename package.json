@@ -26,14 +26,19 @@
       "package.json"
     ],
     "linux": {
-      "target": ["AppImage", "deb"],
+      "target": [
+        "AppImage",
+        "deb"
+      ],
       "category": "Utility"
     },
     "win": {
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
       ]
     },
@@ -49,9 +54,11 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "electron": "^39.2.4",
     "electron-builder": "^26.0.12",
     "rimraf": "^6.0.1",
-    "cross-env": "^10.1.0"
+    "webpack": "^5.104.1",
+    "webpack-cli": "^6.0.1"
   }
 }
