@@ -1,5 +1,5 @@
 {
-  "name": "botlab-live",
+  "name": "@skybrush/live",
   "version": "2.12.1",
   "description": "Ground control station of a Botlab drone swarm",
   "main": "electron/main.js",
@@ -9,37 +9,27 @@
     "name": "Botlab Dynamics",
     "email": "support@botlabdynamics.com"
   },
-
   "scripts": {
-    "bundle": "rimraf build && cross-env NODE_ENV=production webpack --mode=production --progress --config webpack/dist.config.js",
+    "bundle": "rimraf build && cross-env NODE_ENV=production webpack --mode=production --config webpack/dist.config.js",
+    "start:electron": "webpack serve --config webpack/electron.config.js"
   },
-
   "build": {
     "appId": "com.collmot.botlab.live",
-
-    "productName": "botlab-live",
+    "productName": "Botlab Live",
     "artifactName": "botlab-live-${version}-${os}.${ext}",
-
     "directories": {
-      "buildResources": "build-resources"
+      "buildResources": "assets-empty"
     },
-
     "files": [
       "build/**/*",
       "electron/**/*",
       "package.json"
     ],
-
-    "asar": true,
-
     "linux": {
       "target": ["AppImage", "deb"],
       "category": "Utility"
     },
-
     "win": {
-      "icon": null,
-      "requestedExecutionLevel": "asInvoker",
       "target": [
         {
           "target": "nsis",
@@ -47,7 +37,6 @@
         }
       ]
     },
-
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
@@ -55,17 +44,14 @@
       "createStartMenuShortcut": true
     }
   },
-
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
-
   "devDependencies": {
     "electron": "^39.2.4",
     "electron-builder": "^26.0.12",
     "rimraf": "^6.0.1",
-    "cross-env": "^10.1.0",
-    "patch-package": "^8.0.1"
+    "cross-env": "^10.1.0"
   }
 }
